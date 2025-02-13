@@ -13,11 +13,11 @@ class Locacao extends Model
 
     public function carro()
     {
-        return $this->belongsTo(Carro::class);
+        return $this->belongsTo(Carro::class); // uma Locação pertece a um carro
     }
 
     public function cliente()
     {
-        return $this->belongsTo(Cliente::class);
+        return $this->belongsTo(Cliente::class);  // uma Locação pertece a um cliente
     }
 }

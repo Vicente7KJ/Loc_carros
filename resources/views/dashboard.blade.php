@@ -1,106 +1,75 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <style>
-        body {
-            display: flex;
-        }
-        #sidebar {
-            width: 250px;
-            background: #343a40;
-            color: #fff;
-            min-height: 100vh;
-            padding-top: 20px;
-            display: none;
-            position: fixed;
-            z-index: 1000;
-        }
-        #sidebar a {
-            color: #fff;
-            text-decoration: none;
-            display: block;
-            padding: 10px;
-        }
-        #sidebar a:hover {
-            background: #495057;
-        }
-        .content {
-            flex: 1;
-            padding: 20px;
-            margin-left: 250px;
-        }
-        .navbar-toggler {
-            border: none;
-            background: none;
-        }
-        .navbar-toggler-icon {
-            background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3E%3Cpath stroke=\'rgba%2888, 88, 88, 1%29\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' d=\'M4 7h22M4 15h22M4 23h22\'/%3E%3C/svg%3E');
-        }
-    </style>
-</head>
-<body>
-    <nav class="navbar navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" id="menu-toggle">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </nav>
-    <div id="sidebar">
-        <h4 class="text-center">Menu</h4>
-        <a href="{{ route('clientes.index') }}">Ver Clientes</a>
-        <a href="{{ route('clientes.create') }}">Adicionar Cliente</a>
-        <a href="{{ route('carros.index') }}">Ver Carros</a>
-        <a href="{{ route('carros.create') }}">Adicionar Carro</a>
-        <a href="{{ route('locacoes.index') }}">Ver Locações</a>
-        <a href="{{ route('locacoes.create') }}">Adicionar Locação</a>
-    </div>
-    <div class="content">
-        <div class="container mt-5">
-            <h1 class="mb-4">Dashboard</h1>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Clientes</h5>
-                            <p class="card-text">Gerencie os registros de clientes.</p>
-                            <a href="{{ route('clientes.index') }}" class="btn btn-primary">Ver Clientes</a>
-                            <a href="{{ route('clientes.create') }}" class="btn btn-secondary">Adicionar Cliente</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Carros</h5>
-                            <p class="card-text">Gerencie os registros de carros.</p>
-                            <a href="{{ route('carros.index') }}" class="btn btn-primary">Ver Carros</a>
-                            <a href="{{ route('carros.create') }}" class="btn btn-secondary">Adicionar Carro</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Locações</h5>
-                            <p class="card-text">Gerencie os registros de locações.</p>
-                            <a href="{{ route('locacoes.index') }}" class="btn btn-primary">Ver Locações</a>
-                            <a href="{{ route('locacoes.create') }}" class="btn btn-secondary">Adicionar Locação</a>
-                        </div>
-                    </div>
-                </div>
+@extends('layouts.app')
+
+@section('title', 'Dashboard')
+
+@section('content')
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Dashboard</h1>
+</div>
+<!-- Carrossel de Carros -->
+<div id="carrosselCarros" class="carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://fotos-jornaldocarro-estadao.nyc3.cdn.digitaloceanspaces.com/wp-content/uploads/2020/05/11110138/2020-Chevrolet-Corvette-Stingray-245-1160x773.jpg" class="d-block w-100" alt="Chevrolet Corvette" style="max-height: 400px; object-fit: cover;">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Chevrolet Corvette</h5>
+                <p>Esportivo com motor potente e design arrojado.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="https://fotos-jornaldocarro-estadao.nyc3.cdn.digitaloceanspaces.com/wp-content/uploads/2023/01/27155026/P90492711_highRes_the-all-new-bmw-m3-c-1536x864.jpg" class="d-block w-100" alt="BMW M3" style="max-height: 400px; object-fit: cover;">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>BMW M3</h5>
+                <p>Luxuoso, potente e com tecnologias avançadas.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="https://fotos-jornaldocarro-estadao.nyc3.cdn.digitaloceanspaces.com/wp-content/uploads/2023/03/23160100/Demon-170-3.png" class="d-block w-100" alt="Dodge Demon" style="max-height: 400px; object-fit: cover;">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Dodge Demon</h5>
+                <p>O mais forte de sua geração.</p>
             </div>
         </div>
     </div>
-    <script>
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            var sidebar = document.getElementById('sidebar');
-            if (sidebar.style.display === 'block') {
-                sidebar.style.display = 'none';
-            } else {
-                sidebar.style.display = 'block';
-            }
-        });
-    </script>
-</body>
-</html>
+    <a class="carousel-control-prev" href="#carrosselCarros" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+    </a>
+    <a class="carousel-control-next" href="#carrosselCarros" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Próximo</span>
+    </a>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Clientes</h5>
+                <p class="card-text">Gerencie os registros de clientes.</p>
+                <a href="{{ route('clientes.index') }}" class="btn btn-primary">Ver Clientes</a>
+                <a href="{{ route('clientes.create') }}" class="btn btn-secondary">Adicionar Cliente</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Carros</h5>
+                <p class="card-text">Gerencie os registros de carros.</p>
+                <a href="{{ route('carros.index') }}" class="btn btn-primary">Ver Carros</a>
+                <a href="{{ route('carros.create') }}" class="btn btn-secondary">Adicionar Carro</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Locações</h5>
+                <p class="card-text">Gerencie os registros de locações.</p>
+                <a href="{{ route('locacoes.index') }}" class="btn btn-primary">Ver Locações</a>
+                <a href="{{ route('locacoes.create') }}" class="btn btn-secondary">Adicionar Locação</a>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
