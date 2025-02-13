@@ -30,26 +30,30 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ route('carros.index') }}">Carros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('clientes.index') }}">Clientes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('locacoes.index') }}">Locações</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('custos.index') }}">Custos</a></li>
+                </ul>
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('carros.index') }}">Carros</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('clientes.index') }}">Clientes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('locacoes.index') }}">Locações</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('custos.index') }}">Custos</a>
-                    </li>
+                    @auth
+                        <li class="nav-item">
+                            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Logout</button>
+                            </form>
+                        </li>
+                    @endauth
                 </ul>
             </div>
         </div>
     </nav>
+
     <div class="container mt-4 content">
         @yield('content')
     </div>
+
     <footer class="bg-dark text-white pt-4 pb-4 mt-5">
         <div class="container">
             <div class="row text-center">
@@ -82,17 +86,10 @@
             </div>
         </div>
     </footer>
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> <!-- Corrigido -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var myCarousel = new bootstrap.Carousel(document.querySelector("#carrosselCarros"), {
-            interval: 3000, // Troca a cada 3 segundos
-            wrap: true
-        });
-    });
-</script>
